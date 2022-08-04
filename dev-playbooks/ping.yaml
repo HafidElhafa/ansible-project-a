@@ -4,10 +4,12 @@
   vars:
     key1: true
     key2: "value2"
+  gather_facts: no
   tasks:
     - name: Ping
       ping:
 
     - name: Print variables
+      when: ansible_distribution is defined
       debug:
-        msg: "{{ key1 }} {{ key2 }}"
+        msg: "OS = {{ ansible_distribution }}"
